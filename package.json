@@ -1,0 +1,25 @@
+{
+  "name": "@pansy/axios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangxingkang/axios.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangxingkang/axios/issues"
+  },
+  "homepage": "https://github.com/wangxingkang/axios#readme",
+  "devDependencies": {
+    "typescript": "^4.7.2",
+    "vitest": "^0.12.9"
+  }
+}
