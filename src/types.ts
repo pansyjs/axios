@@ -1,38 +1,44 @@
 // TypeScript Version: 4.1
-export type AxiosHeaders = Record<string, string | string[] | number | boolean>;
+export type AxiosHeaderValue = string | string[] | number | boolean;
+
+export type AxiosHeaders = Record<string, AxiosHeaderValue>;
 
 export type MethodsHeaders = {
   [Key in Method as Lowercase<Key>]: AxiosHeaders;
 };
 
-export interface CommonHeaders  {
+export interface CommonHeaders {
   common: AxiosHeaders;
 }
 
 export type Method =
-  | 'get' | 'GET'
-  | 'delete' | 'DELETE'
-  | 'head' | 'HEAD'
-  | 'options' | 'OPTIONS'
-  | 'post' | 'POST'
-  | 'put' | 'PUT'
-  | 'patch' | 'PATCH'
-  | 'purge' | 'PURGE'
-  | 'link' | 'LINK'
-  | 'unlink' | 'UNLINK';
+  | 'get'
+  | 'GET'
+  | 'delete'
+  | 'DELETE'
+  | 'head'
+  | 'HEAD'
+  | 'options'
+  | 'OPTIONS'
+  | 'post'
+  | 'POST'
+  | 'put'
+  | 'PUT'
+  | 'patch'
+  | 'PATCH'
+  | 'purge'
+  | 'PURGE'
+  | 'link'
+  | 'LINK'
+  | 'unlink'
+  | 'UNLINK';
 
-export type ResponseType =
-  | 'arraybuffer'
-  | 'blob'
-  | 'document'
-  | 'json'
-  | 'text'
-  | 'stream';
+export type ResponseType = 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream';
 
 export type AxiosRequestHeaders = Partial<CommonHeaders & AxiosHeaders & MethodsHeaders>;
 
 export type AxiosResponseHeaders = Record<string, string> & {
-  'set-cookie'?: string[]
+  'set-cookie'?: string[];
 };
 
 export interface AxiosRequestTransformer {
@@ -49,7 +55,7 @@ export interface TransitionalOptions {
   clarifyTimeoutError?: boolean;
 }
 
-export interface AxiosResponse<T = any, D = any>  {
+export interface AxiosResponse<T = any, D = any> {
   data: T;
   status: number;
   statusText: string;
