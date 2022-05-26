@@ -2,23 +2,39 @@
   "name": "@pansy/axios",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+  "homepage": "https://github.com/wangxingkang/axios#readme",
+  "bugs": {
+    "url": "https://github.com/wangxingkang/axios/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wangxingkang/axios.git"
   },
-  "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wangxingkang/axios/issues"
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest"
   },
-  "homepage": "https://github.com/wangxingkang/axios#readme",
+  "lint-staged": {
+    "*.{jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.1",
+    "@commitlint/config-conventional": "^17.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.2",
+    "prettier": "^2.6.2",
+    "prettier-plugin-organize-imports": "^2.3.4",
+    "prettier-plugin-packagejson": "^2.2.18",
     "typescript": "^4.7.2",
     "vitest": "^0.12.9"
   }
