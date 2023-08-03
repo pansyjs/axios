@@ -1,4 +1,4 @@
-// Axios v1.4.0 Copyright (c) 2023 Matt Zabriskie and contributors
+// Axios v0.2.0 Copyright (c) 2023 Matt Zabriskie and contributors
 'use strict';
 
 const FormData$1 = require('form-data');
@@ -1902,7 +1902,31 @@ utils.inherits(CanceledError, AxiosError, {
  * @returns {object} The response.
  */
 function settle(resolve, reject, response) {
-  const validateStatus = response.config.validateStatus;
+  const {
+    responseType = 'json',
+    validateStatus,
+    validateDataStatus
+  } = response.config || {};
+
+  if (
+    response.data &&
+    responseType === 'json' &&
+    validateDataStatus
+  ) {
+    const result = validateDataStatus(response.data) || {};
+
+    if (result.success === false) {
+      reject(new AxiosError({
+        message: result.message || 'Request failed with response data ' + response.data,
+        code: 'ERROR_RESPONSE_DATA',
+        config: response.config,
+        request: response.request,
+        response
+      }));
+      return;
+    }
+  }
+
   if (!response.status || !validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
@@ -1961,7 +1985,7 @@ function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 }
 
-const VERSION = "1.4.0";
+const VERSION = "0.2.0";
 
 function parseProtocol(url) {
   const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);

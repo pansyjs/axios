@@ -1,4 +1,4 @@
-// Axios v1.4.0 Copyright (c) 2023 Matt Zabriskie and contributors
+// Axios v0.2.0 Copyright (c) 2023 Matt Zabriskie and contributors
 function bind(fn, thisArg) {
   return function wrap() {
     return fn.apply(thisArg, arguments);
@@ -1935,7 +1935,31 @@ utils.inherits(CanceledError$1, AxiosError$1, {
  * @returns {object} The response.
  */
 function settle(resolve, reject, response) {
-  const validateStatus = response.config.validateStatus;
+  const {
+    responseType = 'json',
+    validateStatus,
+    validateDataStatus
+  } = response.config || {};
+
+  if (
+    response.data &&
+    responseType === 'json' &&
+    validateDataStatus
+  ) {
+    const result = validateDataStatus(response.data) || {};
+
+    if (result.success === false) {
+      reject(new AxiosError$1({
+        message: result.message || 'Request failed with response data ' + response.data,
+        code: 'ERROR_RESPONSE_DATA',
+        config: response.config,
+        request: response.request,
+        response
+      }));
+      return;
+    }
+  }
+
   if (!response.status || !validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
@@ -2629,7 +2653,7 @@ function mergeConfig$1(config1, config2) {
   return config;
 }
 
-const VERSION$1 = "1.4.0";
+const VERSION$1 = "0.2.0";
 
 const validators$1 = {};
 

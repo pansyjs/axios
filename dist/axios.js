@@ -1,4 +1,4 @@
-// Axios v1.4.0 Copyright (c) 2023 Matt Zabriskie and contributors
+// Axios v0.2.0 Copyright (c) 2023 Matt Zabriskie and contributors
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -1837,7 +1837,24 @@
    * @returns {object} The response.
    */
   function settle(resolve, reject, response) {
-    var validateStatus = response.config.validateStatus;
+    var _ref = response.config || {},
+      _ref$responseType = _ref.responseType,
+      responseType = _ref$responseType === void 0 ? 'json' : _ref$responseType,
+      validateStatus = _ref.validateStatus,
+      validateDataStatus = _ref.validateDataStatus;
+    if (response.data && responseType === 'json' && validateDataStatus) {
+      var result = validateDataStatus(response.data) || {};
+      if (result.success === false) {
+        reject(new AxiosError({
+          message: result.message || 'Request failed with response data ' + response.data,
+          code: 'ERROR_RESPONSE_DATA',
+          config: response.config,
+          request: response.request,
+          response: response
+        }));
+        return;
+      }
+    }
     if (!response.status || !validateStatus || validateStatus(response.status)) {
       resolve(response);
     } else {
@@ -2440,7 +2457,7 @@
     return config;
   }
 
-  var VERSION = "1.4.0";
+  var VERSION = "0.2.0";
 
   var validators$1 = {};
 

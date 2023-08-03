@@ -1,5 +1,13 @@
 # Changelog
 
+# 0.2.0 (2023-08-03)
+
+
+### Features
+
+* 支持 validateDataStatus ([1d8e75a](https://github.com/axios/axios/commit/1d8e75ad5606f2df18083f99137d79f143a7a906))
+* add settle、AxiosError ([885bc38](https://github.com/axios/axios/commit/885bc38a634b98362df1c54b714fa332533a4e7c))
+
 # [1.4.0](https://github.com/axios/axios/compare/v1.3.6...v1.4.0) (2023-04-27)
 
 
