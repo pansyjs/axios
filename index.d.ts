@@ -326,6 +326,7 @@ export interface AxiosRequestConfig<D = any> {
   onDownloadProgress?: (progressEvent: AxiosProgressEvent) => void;
   maxContentLength?: number;
   validateStatus?: ((status: number) => boolean) | null;
+  validateDataStatus?: ((data?: any) => { success: boolean; message?: string }) | null;
   maxBodyLength?: number;
   maxRedirects?: number;
   maxRate?: number | [MaxUploadRate, MaxDownloadRate];
