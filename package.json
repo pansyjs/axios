@@ -1,0 +1,28 @@
+{
+  "name": "@pansy/axios",
+  "version": "1.0.0",
+  "description": "Promise based HTTP client for the browser and node.js",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "follow-redirects": "^1.15.0",
+    "form-data": "^4.0.0",
+    "proxy-from-env": "^1.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@release-it/conventional-changelog": "^5.1.1",
+    "cross-env": "^7.0.3",
+    "husky": "^8.0.3",
+    "release-it": "^15.10.3",
+    "typescript": "^5.0.4",
+    "vitest": "^0.34.1"
+  }
+}
