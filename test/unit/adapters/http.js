@@ -1426,7 +1426,7 @@ describe('supports http with nodejs', function () {
         res.end();
       }, 1000);
     }).listen(4444, function () {
-      axios.get('https://www.google.com')
+      axios.get('https://www.baidu.com')
         .then(function (res) {
           assert.equal(res.request.agent.protocol, 'https:');
           done();
