@@ -1,22 +1,9 @@
 {
   "compilerOptions": {
+    "module": "node16",
+    "lib": ["dom", "es2015"],
+    "types": [],
     "strict": true,
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "lib": ["dom", "es2017"],
-    "jsx": "react",
-    "declaration": true,
-    "declarationDir": "./types",
-    "sourceMap": true,
-    "removeComments": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "baseUrl": "./",
-    "types": ["vitest/globals"]
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+    "noEmit": true
+  }
 }
